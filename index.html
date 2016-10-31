@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <style>
   * {
-    background-color: green;
+    background-color: #f71111;
     margin:0;
     border: none;
     outline: none;
     font-family: 'Helvetica';
+    color:black;
     font-size: 20px;
     font-weight: bold;
   }
@@ -13,7 +14,7 @@
   #chat {
     padding: 0 5px;
     height: 100vh;
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     justify-content: flex-end;
   }
@@ -30,6 +31,7 @@
 <div id="chat">
   <div id="messages"></div>
   <input disabled placeholder="Connecting..." id="newmessage"></input>
+<button  id = "send" type ="button" > Submit</button>
 </div>
 
 <!-- Imports jQuery -->
@@ -66,6 +68,10 @@ newmessage.on('keypress', function(e) {
     $.post('/send', {data: newmessage.val()});
     newmessage.val('');
   };
+});
+$("#send").click(function(){
+  $.post('/send', {data: newmessage.val()});
+  newmessage.val('');
 });
 
 // Force all focus to the input box.
